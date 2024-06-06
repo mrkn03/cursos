@@ -9,7 +9,6 @@ n = int(input("Quantos números voce vai digitar? "))
                 #OU
 vet = [] * n
 
-
 for i in range(0, n):
     vet[i] = float(input("Digite um número: "))
 print()
