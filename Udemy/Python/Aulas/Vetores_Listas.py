@@ -6,7 +6,9 @@
 n = int(input("Quantos números voce vai digitar? "))
 
 #vet: [float] = [0 for i in range(n)]
+               
                 #OU
+                
 vet = [] * n
 
 for i in range(0, n):
