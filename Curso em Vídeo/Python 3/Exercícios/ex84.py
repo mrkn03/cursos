@@ -5,36 +5,38 @@ A) quantas pessoas forasm cadastradas.
 B) uma listagem com as pessoas mais pesadas.
 C) uma listagem com as pessoas mais leves."""
 
-dados = []
-pessoas = []
-total_pessoas = 0
+temporario = []
+principal = []
+quantidade = 0
+maior = menor = 0
 while True:
-    dados.append(str(input("Nome: ")))
-    dados.append(float(input("Digite o peso em kg: ")))
-    pessoas.append(dados[:])
-    dados.clear()
-    opcao = str(input("Deseja continuar? (S/N) ")).upper()
-    total_pessoas += 1
-
-    #Verificar se deseja continuar implementando dados
-    if opcao == "S" or opcao == "SIM":
-        continue
+    temporario.append(str(input("Nome: ")))
+    temporario.append(float(input("Peso: ")))
+    
+    if len(principal) == 0:
+        maior = menor = temporario[1]
     else:
-        print("Encerrando programa.")
+        if temporario[1] > maior:
+            maior = temporario[1]
+        if temporario[1] < menor:
+            menor = temporario[1]
+
+    principal.append(temporario[:])
+    temporario.clear()
+
+    opcao = str(input("Deseja continuar? (S/N)")).upper()
+    quantidade += 1
+    
+    if opcao in "N":
         break
 
-maior = 0
-menor = 0
-pessoas_leves = " "
-pessoas_pesadas = " "
-for p in pessoas:
-    if p[1] > 0:
-        maior = p[1]
-        pessoas_pesadas = p[0]
-    elif p[1] < 999:
-        menor = p[1]
-        pessoas_leves = p[0]
-    
-print(f"Foram cadastradas {total_pessoas} pessoas.")
-print(f"A pessoa mais pesada foi {pessoas_pesadas} com {maior}kg")
-print(f"A pessoa mais leve foi {pessoas_leves} com {menor}kg.")
+print(f"Foram cadastradas {quantidade} pessoas.")
+print(f"O maior peso foi de {maior}kg. Peso de ", end = "")
+for p in principal:
+    if p[1] == maior:
+        print(f"[{p[0]}]", end = "")
+print()
+print(f"O menor peso foi de {menor}kg. Peso de ", end = "")
+for p in principal:
+    if p[1] == menor:
+        print(f"[{p[0]}]", end = "")
